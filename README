@@ -1,0 +1,15 @@
+# Atividade Amazon AWS e Linux - PB Compass UOL
+
+## Introdução
+
+Este projeto visa automatizar a configuração de um ambiente AWS, a implementação de um servidor Apache e a criação de um script para monitorar o status do serviço.
+
+## Pré-requisitos
+
+- Conta AWS válida.
+- Chave privada correspondente à chave pública a ser gerada (PB).
+- Conhecimento básico de AWS, Linux, Apache, NFS, e scripts Bash.
+
+## Configuração do Ambiente AWS
+
+
