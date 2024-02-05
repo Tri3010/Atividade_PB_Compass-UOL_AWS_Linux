@@ -12,4 +12,23 @@ Este projeto visa automatizar a configuração de um ambiente AWS, a implementa�
 
 ## Configuração do Ambiente AWS
 
+- Faça o login em sua conta AWS;
+- Criar par de chaves;
+- Criar Instância Amazon EC2;
+- Gerar um Elastic IP e anexá-lo à instância;
+
+1 - Criar par de chaves
+
+- Abrir console do EC2;
+- Selecionar Pares de Chaves no painel de navegação;
+- Escolha "Criar Pares de chaves";
+- Nome: PB;
+- Tipo de par de chaves: RSA;
+- Formato de arquivo: Pem;
+- Criar par de chaves;
+- O arquivo de chave privada é baixado automaticamente pelo navegador. Arquivo salvo em local seguro.
+  
+
+
+ 
 
