@@ -12,44 +12,73 @@ Este projeto visa automatizar a configuração de um ambiente AWS, a implementa�
 
 ## Configuração do Ambiente AWS
 
-- Faça o login em sua conta AWS;
-- Certificar se está na região correta; 
-- Criar par de chaves;
-- Criar Instância Amazon EC2;
-- Gerar um Elastic IP e anexá-lo à instância;
+- Feito o login em minha conta AWS;
+- Certificado que eu estava região correta; 
+- Criado par de chaves;
+- Criada Instância Amazon EC2;
+- Gerado um Elastic IP e anexei-o à minha instância;
+- Liberei as portas de comunicação para acesso público no grupo de segurança da instância criada;
+- Criado Gateway de Internet;
+- Criado rotas para acesso público.
 
-1 - Criar par de chaves
+1 - Criação do par de chaves
 
-- Abrir console do EC2;
-- Selecionar Pares de Chaves no painel de navegação;
-- Escolha "Criar Pares de chaves";
-- Nome
-- Tipo de par de chaves: RSA;
-- Formato de arquivo: Pem;
-- Criar par de chaves;
+- Abri o console do EC2;
+- Selecionei "Pares de Chaves" no painel de navegação;
+- Escolhi "Criar Pares de chaves";
+- Coloquei um "Name";
+- Tipo de par de chaves foi RSA;
+- Formato de arquivo foi Pem;
+- Criado o par de chaves;
 - O arquivo de chave privada é baixado automaticamente pelo navegador. Arquivo salvo em local seguro.
 
-2 - Criar Amazon Elastic File System (EFS)
+2 - Criação do Amazon Elastic File System (EFS)
 
-- No console do EFS, escolher "Criar sistemas de arquivo";
-- Colocar um nome para o sistema de arquivo;
+- No console do EFS, cliquei em  "Criar sistemas de arquivo";
+- ColocarDei um nome para o sistema de arquivo;
 - Selecionado a minha VPC padrão;
-- Clicar em "Criar"
+- Clicado em "Criar"
 
 
-3 - Criar instância Amazon EC2
+3 - Criação da instância Amazon EC2
 
-- No console do EC2, escolha "Executar Instância";
-- Coloque chave e valor nas tags (Name, CostCenter, Project);
-- Escolher imagem da instância - Amazon Linux 2;
-- Escolher tipo da instância - t3.small;
-- Selecionar par de chaves criado anteriormente;
+- No console do EC2, cliquei em  "Executar Instância";
+- Coloquei chave e valor nas tags (Name, CostCenter, Project);
+- Escolhi imagem da instância - Amazon Linux 2;
+- Escolhi tipo da instância - t3.small;
+- Selecionei par de chaves criado anteriormente;
 - Em "Rede", escolhido opção "Criar Grupo de Segurança", com allow SSH trafic from "Meu IP";
-- Configurar armazenamento - 16 GiB, gp2 volume raiz;
-- Em sistemas de arquivos, clicar em "Editar";
-- Selecionar "EFS";
-- Selecionar o EFS que foi criado anteriormente com seu ponto de montagem.
-- Clicar em "Executar Instância"
+- Em "Configurar armazenamento" preenchi - 16 GiB, gp2 volume raiz;
+- Em sistemas de arquivos, cliquei em "Editar";
+- Selecinei "EFS";
+- Selecionei o EFS que foi criado anteriormente com seu ponto de montagem.
+- Cliquei em "Executar Instância"
+
+* Sempre que a inastância não estava em uso, ela foi deixada em estado "Interrompido".
+
+4 - Alocação de um endereço de IP Elástico e anexação a minha instância
+
+- No console da VPC, procurei no painel lateral "IPs Elásticos";
+- Cliquei nele e escolhi "Alocar IPs Elásticos";
+- Deixei tudo como padrão e cliquei em "Alocar";
+- Depois de alocado, selecionei ele e cliquei em "Associar endereço IP Elástico";
+- Em tipo de recurso, selecionei "Instância"e selecionei a minha instância criada para a atividade;
+- Clicado em "Associar".
+ 
+5 - Liberação das portas de comunicação para acesso público
+
+- No console do EC2, em Instâncias, selecionei minha instância;
+- Na aba "Segurança", selecionei meu security group e editei as regras de entrada da seguinte maneira:
+Intervalo de Portas - 80     Protocolo - TCP   
+Intervalo de Portas - 111    Protocolo - UDP
+Intervalo de Portas - 2049   Protocolo - TCP
+Intervalo de Portas - 443    Protocolo - TCP
+Intervalo de Portas - 2049   Protocolo - UDP
+Intervalo de Portas - 22     Protocolo - TCP
+Intervalo de Portas - 111    Protocolo - TCP
+
+Todos com Origem - 0.0.0.0/0
+
 
   
 
