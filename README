@@ -13,6 +13,7 @@ Este projeto visa automatizar a configuração de um ambiente AWS, a implementa�
 ## Configuração do Ambiente AWS
 
 - Faça o login em sua conta AWS;
+- Certificar se está na região correta; 
 - Criar par de chaves;
 - Criar Instância Amazon EC2;
 - Gerar um Elastic IP e anexá-lo à instância;
@@ -22,11 +23,34 @@ Este projeto visa automatizar a configuração de um ambiente AWS, a implementa�
 - Abrir console do EC2;
 - Selecionar Pares de Chaves no painel de navegação;
 - Escolha "Criar Pares de chaves";
-- Nome: PB;
+- Nome
 - Tipo de par de chaves: RSA;
 - Formato de arquivo: Pem;
 - Criar par de chaves;
 - O arquivo de chave privada é baixado automaticamente pelo navegador. Arquivo salvo em local seguro.
+
+2 - Criar Amazon Elastic File System (EFS)
+
+- No console do EFS, escolher "Criar sistemas de arquivo";
+- Colocar um nome para o sistema de arquivo;
+- Selecionado a minha VPC padrão;
+- Clicar em "Criar"
+
+
+3 - Criar instância Amazon EC2
+
+- No console do EC2, escolha "Executar Instância";
+- Coloque chave e valor nas tags (Name, CostCenter, Project);
+- Escolher imagem da instância - Amazon Linux 2;
+- Escolher tipo da instância - t3.small;
+- Selecionar par de chaves criado anteriormente;
+- Em "Rede", escolhido opção "Criar Grupo de Segurança", com allow SSH trafic from "Meu IP";
+- Configurar armazenamento - 16 GiB, gp2 volume raiz;
+- Em sistemas de arquivos, clicar em "Editar";
+- Selecionar "EFS";
+- Selecionar o EFS que foi criado anteriormente com seu ponto de montagem.
+- Clicar em "Executar Instância"
+
   
 
 
