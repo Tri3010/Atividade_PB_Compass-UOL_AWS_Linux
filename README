@@ -79,6 +79,29 @@ Intervalo de Portas - 111    Protocolo - TCP
 
 Todos com Origem - 0.0.0.0/0
 
+Os próximos passos, eu já havia configurado para comunicação pública. 
+Mesmo não sendo necessário devido a anexação do IP elástico a minha instância, optei por colocar nessa documentação.
+
+6 - Criação de um Gateway da Internet e associação dele a minha VPC
+
+- No console da VPC, no painel lateral cliquei em "Gateways da Internet";
+- Cliquei em "Criar Gateway da Internet";
+- Coloquei chave e valor nas tags (Name, CostCenter, Project);
+- Cliquei em "Criar Gateway da Internet";
+- Selecionei o Gateway da Internet criado, cliquei em "Associar à VPC";
+- Selecionei minha VPC;
+- Meu Gateway da Internet foi associado à minha VPC.
+
+7 - Criação Rotas para acesso público
+
+- No console da VPC, no painel lateral cliquei em "Tabela de Rotas";
+- Cliquei em "Tabela de Rotas";
+- Coloquei chave e valor nas tags (Name, CostCenter, Project);
+- Associei à minha VPC;
+- Cliquei em criar tabela de rotas;
+- Selecionei minha tabela de rotas criada.
+- Na aba Rotas, adicionei uma rota com destino 0.0.0.0/0 e alvo meu gateway da internet.
+
 
   
 
