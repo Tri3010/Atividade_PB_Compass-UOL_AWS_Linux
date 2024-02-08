@@ -142,6 +142,7 @@ Comando: sudo service httpd start
 Comando: nano /mnt/efs/patriciaMariaMoura/scriptApache
 - Código do script escrito nesse arquivo. 
 
+
 4 - Script de validação do serviço
 
 
@@ -173,6 +174,14 @@ echo "Serviço: $NOME_SERVICO" >> "$DIRETORIO_EFS/resultado_$tipo.txt"
 echo "Status: $status" >> "$DIRETORIO_EFS/resultado_$tipo.txt"
 echo "Mensagem: $mensagem" >> "$DIRETORIO_EFS/resultado_$tipo.txt"
 
+
+
+5 - Preparação da execução automatizada do script a cada 5 minutos.
+ 
+- Aberto o arquivo cronjobs;
+Comando: crontab -e
+- Agendar a execução a cada 5 minutos
+Comando: */5 * * * * /mnt/efs/patriciaMariaMoura/scriptApache
 
 
 
