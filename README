@@ -103,6 +103,48 @@ Mesmo não sendo necessário devido a anexação do IP elástico a minha instân
 - Na aba Rotas, adicionei uma rota com destino 0.0.0.0/0 e alvo meu gateway da internet.
 
 
+
+## Requisitos no Linux
+
+- Configurado EFS;
+- Criado diretório patriciaMariaMoura dentro do EFS;
+- Subido Apache no servidor - online e rodando;
+- Criado script que valida o status do serviço e envia o resultado para patriciaMariaMoura no EFS;
+- Script com DataHORA + nome do serviço + Status + mensagem personalizada de online ou offline;
+- Script gera duas saidas, uma para serviço online e outra para offline;
+- Execução automatizada a cada 5 minutos.
+
+
+1 - Configuração EFS e criação do diretório patriciaMariaMoura
+
+- Primeiro passo é a instalação do pacote amazon-efs-utils. 
+Comando: sudo yum install -y amazon-efs-utils;
+- Minha montagem de sistema de arquivo foi automática, pois anexei o EFS quando criei minha instância EC2 Linux2;
+- Atualizei o arquivo /etc/fstab do EC2 com uma entrada para o sistema de arquivos do EFS;
+- Criado diretório dentro efs. 
+Comando: mkdir mnt/efs/patriciaMariaMoura
+
+
+2 - Subido Apache no servidor
+
+- Conectada a minha instância EC2, instalei o servidor Web Apache.
+Comando: sudo yum -y install httpd
+
+- Iniciei o serviço.
+Comando: sudo service httpd start  
+
+- Certificado que o serviço estava operando através da "Test Page" do Apache, colocando o IP elástico no browser. 
+
+
+3 - Criado script para validar serviço.
+- Conectada em minha instância EC2, criei arquivo nano dentro do meu diretório patriciaMariaMoura
+Comando: nano /mnt/efs/patriciaMariaMoura/scriptApache
+- Código do script escrito nesse arquivo. 
+
+
+
+
+
   
 
 
