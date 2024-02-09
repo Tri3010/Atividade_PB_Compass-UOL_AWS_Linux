@@ -143,36 +143,7 @@ Comando: sudo service httpd start
 Comando: nano /mnt/efs/patriciaMariaMoura/scriptApache
 - Código do script foi escrito nesse arquivo. 
 
-
-4 - Script de validação do serviço
-
-!/bin/bash
-
-
-IP_DO_SERVIDOR="52.1.123.69" 
-DIRETORIO_EFS="/mnt/efs/patriciaMariaMoura"
-NOME_SERVICO="httpd"
-
-DATA_HORA=$(date "+%Y-%m-%d %H:%M:%S")
-
-status=$(systemctl is-active $NOME_SERVICO)
-
-if [ "$status" = "active" ]; then
-    mensagem="O serviço $NOME_SERVICO está online."
-    tipo="online"
-else
-    mensagem="O serviço $NOME_SERVICO não está online."
-    tipo="offline"
-fi
-
-echo "Data/Hora: $DATA_HORA" >> "$DIRETORIO_EFS/resultado_$tipo.txt"
-echo "Serviço: $NOME_SERVICO" >> "$DIRETORIO_EFS/resultado_$tipo.txt"
-echo "Status: $status" >> "$DIRETORIO_EFS/resultado_$tipo.txt"
-echo "Mensagem: $mensagem" >> "$DIRETORIO_EFS/resultado_$tipo.txt"
-
-
-
-5 - Preparação da execução automatizada do script a cada 5 minutos.
+4 - Preparação da execução automatizada do script a cada 5 minutos.
  
 - Aberto o arquivo cronjobs;
 Comando: crontab -e
