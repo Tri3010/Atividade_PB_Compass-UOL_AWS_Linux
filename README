@@ -13,11 +13,12 @@ Este projeto visa automatizar a configuração de um ambiente AWS, a implementa�
 ## Configuração do Ambiente AWS
 
 - Feito o login em minha conta AWS;
-- Certificado que eu estava região correta; 
+- Certificado que eu estava na região correta; 
 - Criado par de chaves;
 - Criada Instância Amazon EC2;
 - Gerado um Elastic IP e anexei-o à minha instância;
 - Liberei as portas de comunicação para acesso público no grupo de segurança da instância criada;
+Já configurado em minha VPC:
 - Criado Gateway de Internet;
 - Criado rotas para acesso público.
 
@@ -35,8 +36,8 @@ Este projeto visa automatizar a configuração de um ambiente AWS, a implementa�
 2 - Criação do Amazon Elastic File System (EFS)
 
 - No console do EFS, cliquei em  "Criar sistemas de arquivo";
-- ColocarDei um nome para o sistema de arquivo;
-- Selecionado a minha VPC padrão;
+- Dei um nome para o sistema de arquivo;
+- Selecionada a minha VPC padrão;
 - Clicado em "Criar"
 
 
@@ -61,14 +62,14 @@ Este projeto visa automatizar a configuração de um ambiente AWS, a implementa�
 - No console da VPC, procurei no painel lateral "IPs Elásticos";
 - Cliquei nele e escolhi "Alocar IPs Elásticos";
 - Deixei tudo como padrão e cliquei em "Alocar";
-- Depois de alocado, selecionei ele e cliquei em "Associar endereço IP Elástico";
+- Depois de alocado, selecionei-o e cliquei em "Associar endereço IP Elástico";
 - Em tipo de recurso, selecionei "Instância"e selecionei a minha instância criada para a atividade;
 - Clicado em "Associar".
  
 5 - Liberação das portas de comunicação para acesso público
 
 - No console do EC2, em Instâncias, selecionei minha instância;
-- Na aba "Segurança", selecionei meu security group e editei as regras de entrada da seguinte maneira:
+- Na aba "Segurança", selecionei meu security group e editei as regras de entrada deixando da seguinte maneira:
 Intervalo de Portas - 80     Protocolo - TCP   
 Intervalo de Portas - 111    Protocolo - UDP
 Intervalo de Portas - 2049   Protocolo - TCP
@@ -140,7 +141,7 @@ Comando: sudo service httpd start
 
 - Conectada em minha instância EC2, criei arquivo nano dentro do meu diretório patriciaMariaMoura
 Comando: nano /mnt/efs/patriciaMariaMoura/scriptApache
-- Código do script escrito nesse arquivo. 
+- Código do script foi escrito nesse arquivo. 
 
 
 4 - Script de validação do serviço
@@ -180,11 +181,13 @@ echo "Mensagem: $mensagem" >> "$DIRETORIO_EFS/resultado_$tipo.txt"
  
 - Aberto o arquivo cronjobs;
 Comando: crontab -e
-- Agendar a execução a cada 5 minutos
+- Agendar a execução a cada 5 minutos. Adicionei uma linha ao arquivo.
 Comando: */5 * * * * /mnt/efs/patriciaMariaMoura/scriptApache
 
 
+Versionamento
 
+O versionamento deste projeto é gerenciado utilizando Git. Cada versão está marcada com uma tag correspondente.
 
   
 
