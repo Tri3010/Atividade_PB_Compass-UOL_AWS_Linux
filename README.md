@@ -146,19 +146,15 @@ Comando: nano /mnt/efs/patriciaMariaMoura/scriptApache
 
 4 - Script de validação do serviço
 
+!/bin/bash
 
 
-#!/bin/bash
-
-# Variáveis
 IP_DO_SERVIDOR="52.1.123.69" 
 DIRETORIO_EFS="/mnt/efs/patriciaMariaMoura"
 NOME_SERVICO="httpd"
 
-# Obtem data e hora
 DATA_HORA=$(date "+%Y-%m-%d %H:%M:%S")
 
-# Verifica se o Apache está online
 status=$(systemctl is-active $NOME_SERVICO)
 
 if [ "$status" = "active" ]; then
@@ -169,7 +165,6 @@ else
     tipo="offline"
 fi
 
-# Envia o resultado para o EFS
 echo "Data/Hora: $DATA_HORA" >> "$DIRETORIO_EFS/resultado_$tipo.txt"
 echo "Serviço: $NOME_SERVICO" >> "$DIRETORIO_EFS/resultado_$tipo.txt"
 echo "Status: $status" >> "$DIRETORIO_EFS/resultado_$tipo.txt"
